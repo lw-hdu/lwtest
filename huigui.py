@@ -1,5 +1,6 @@
 ##北向接口
 import  requests,json,time,pymysql,hashlib
+from biling import start,heart,end
 #获取秒级时间戳
 timeStamp=time.time()
 timeArray = time.localtime(timeStamp)
@@ -77,7 +78,7 @@ def d_devsn():
     for devsn in devsns:
         user_devsn=devsn[0]
         print('用户与设备绑定：'+str(user_devsn),'\n')
-
+#发送请求
 def res(d_name,d_url,d_data,d_header=headers):
     d_res=requests.post(d_url,data=json.dumps(d_data),headers=d_header)
     d_result=d_res.json()['result']
@@ -210,3 +211,9 @@ d_devsn()
 cursor.close()
 #关闭连接
 conn.close()
+
+start()
+time.sleep(10)
+heart()
+time.sleep(10)
+end()
