@@ -206,7 +206,6 @@ d_mount()
 print('销户后用户与设备的绑定关系查询')
 d_devsn()
 
-
 #关闭游标
 cursor.close()
 #关闭连接
