@@ -1,4 +1,4 @@
-##北向接口
+##云电脑涉及接口自动化
 import  requests,json,time,pymysql,hashlib
 from biling import start,heart,end
 #获取秒级时间戳
@@ -7,7 +7,6 @@ timeArray = time.localtime(timeStamp)
 id = time.strftime("%Y%m%d%H", timeArray)
 #生成token
 it=int(time.time())
-#print(it)
 strno='xview'+str(it)+'desktops'
 md5 = hashlib.md5()
 b = strno.encode(encoding='utf-8')
@@ -20,7 +19,7 @@ sheaders={
 	"X-Auth-Token":token,
 	"Content-Type":"application/json"
 	}
-#创建数据库连接
+#创建数据库连接 
 conn=pymysql.connect(user='root',password='mysql',host='10.221.122.117',database='cloudpc')
 cursor=conn.cursor()
 #用户查询
@@ -78,7 +77,7 @@ def d_devsn():
     for devsn in devsns:
         user_devsn=devsn[0]
         print('用户与设备绑定：'+str(user_devsn),'\n')
-#发送请求
+#发送请求json.dumps()将字典转化为字符串
 def res(d_name,d_url,d_data,d_header=headers):
     d_res=requests.post(d_url,data=json.dumps(d_data),headers=d_header)
     d_result=d_res.json()['result']
@@ -103,7 +102,6 @@ pass_data={
         "password":"123"
     }
 res(pass_name,pass_url,pass_data)
-
 #产品订购
 print('订购前桌面池查询')
 d_pool()

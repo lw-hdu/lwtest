@@ -66,5 +66,5 @@ def end():
 start()
 time.sleep(10)
 heart()
-time.sleep(10)
+time.sleep(5)
 end()
